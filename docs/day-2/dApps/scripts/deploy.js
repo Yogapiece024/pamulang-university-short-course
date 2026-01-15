@@ -4,9 +4,10 @@ async function main() {
   const Storage = await hre.ethers.getContractFactory("Storage");
   const storage = await Storage.deploy();
 
-  await storage.deployed();
+  await storage.waitForDeployment();
 
-  console.log("Storage deployed to:", storage.address);
+  const address = await storage.getAddress();
+  console.log("Storage deployed to:", address);
 }
 
 main().catch((error) => {
