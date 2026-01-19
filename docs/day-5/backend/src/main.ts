@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { config } from 'dotenv';
+
 config();
 
 async function bootstrap() {
@@ -8,8 +9,9 @@ async function bootstrap() {
 
   app.enableCors({
     origin: '*',
-  }); // <-- penting! biar frontend bisa fetch
+  });
 
-  await app.listen(4000);
+  const port = process.env.PORT || 3000;
+  await app.listen(port);
 }
 bootstrap();
